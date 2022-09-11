@@ -1,0 +1,169 @@
+* { /*sempre bom iniciar os projetos resetando esses comandos*/
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root { /*sempre bom alterar o font-size no root dos projetos*/
+  font-size: 62.5%;
+  /*criando as variáveis das cores*/
+  --tt-heading: #0C3440; /*tt de texto*/
+  --tt-label: #00453A;
+  --tt-input: #212529;
+  --ot-input: #02799D; /*ot de outline*/
+  --bd-input: rgba(73, 80, 87, 0.3); /*bd de borda*/
+  --tt-placeholder: rgba(73, 80, 87, 0.5);
+  --tt-button: white;
+  --bg-button: #02799D; /*bg de background*/
+  --bg-error: #F03E3E;
+  --tt-error: white;
+  --bg-input: #DCE2E9;
+  --bg-button-hover: #009bca; 
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #040924;
+}
+
+body, input, button { /*para mudar o font-size do input e button, tem que especificar, não basta colocar apenas no body*/
+  font-size: 1.6rem;
+  line-height: 2rem;
+}
+
+.container {
+  display: grid; /*muda a maneira como o elemento é apresentado*/
+  height: 100vh; 
+  place-content: center; /*para deixar o conteúdo do card centralizado ao meio verticalmente*/ 
+}
+
+
+.card {
+  padding: 4.8rem 6.4rem 6.4rem;
+  background: white; 
+  max-width: 42.8rem; /*largura máxima*/
+  margin-inline: auto; /*esse código vai deixar a caixa no centro horizontalmente*/
+  box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1); /*adicionando sombras*/
+  border-radius: 0.6rem;
+}
+
+.title {
+  font-size: 3.2rem;
+  line-height: 4rem;
+  color: var(--tt-heading);
+}
+
+form {
+  width: 30.0rem;
+}
+
+form h1 {
+  margin-bottom: 3.2rem;
+}
+
+form label {
+  font-size: 1.4rem;
+  line-height: 1.8rem;
+  color: var(--tt-label);
+  display: block; /*display inline não aceita margin-bottom, e por padrão, label é inline*/
+  margin-bottom: 0.8rem;
+}
+
+form input {
+  width: 100%; /*para o input ocupar toda a largura e isso faz a quebra de linha automaticamente*/
+  border: 1px solid var(--bd-input);
+  padding: 1.6rem;
+  background: var(--bg-input);
+  border-radius: 0.4rem;
+  color: var(--tt-input) /*colocando a cor do texto digitado*/
+}
+
+form input:focus {
+  outline: 2px solid var(--ot-input); /*quando o input tiver selecionado (focus) a borda dele (outline) ficará de acordo com as configurações especificadas*/
+}
+
+form input::placeholder { /*utilizando uma sudoclass chamada placeholder para alterar a cor do placeholder*/
+  color: var(--tt-placeholder)
+}
+
+.input-wrapper + .input-wrapper { /*selecionando input-wrapper que tenha anterior a ele um input-wrapper*/
+  margin-top: 1.6rem;
+}
+
+form button {
+  margin-top: 3.2rem;
+  padding: 1.6rem;
+  width: 100%;
+  border: none;
+  background-color: var(--bg-button);
+  color: var(--tt-button);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  font-weight: bold;
+  border-radius: 0.4rem;
+  cursor: pointer; /*para aparecer a mão ao passar o mouse no button*/
+  transition: background 1s; /* para deixar a transição suave*/
+}
+
+form button:hover { /*ao passar o mouse vai mudar o background*/
+  background: var(--bg-button-hover)
+}
+
+/*modal - popup*/
+.modal-wrapper.open { /*observar que não tem espaço entre as classes - no JS quando for adicionado a classe open o popup vai aparecer, e quando for retirada, ele vai sumir*/
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal-wrapper {
+  position: absolute; /*colocando o elemento uma camada acima*/
+  background: rgba(0, 0, 0, 0.7);
+  inset: 0; /*propriedade destravada pelo absolute - inset 0 é o mesmo que colocar 0 em left, right, top, bottom - isso vai deixar a caixa acima horizontalmente ao meio*/
+  display: grid; /*muda a maneira como o elemento é apresentado*/
+  place-content: center; /*para deixar o conteúdo do card centralizado ao meio verticalmente*/ 
+  opacity: 0; /*tirar a visibilidade do modal - ele não aparece por padrão*/
+  visibility: hidden;
+}
+
+.modal {
+  position: relative; 
+}
+
+.modal button {
+  top: 1.6rem;
+  right: 1.6rem;
+  background: none;
+  border: none;
+  position: absolute; /*a posição do button vai ficar relativo ao modal, por isso o position relative no seletor modal*/
+  cursor: pointer;
+  transition: transform 1s; /*para deixar a transição suave*/
+}
+
+.modal button:hover { /*aplicando o transform ao passar o mouse no button*/
+  transform: scale(1.5);
+}
+
+/*editando o alert error*/
+.alert-error.open { /*a classe open vai ser adicionada com JS para a mensagem de erro aparecer e desaparecer*/
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0); /*posição ao fim da animação*/
+}
+
+.alert-error {
+  position: abosolute;
+  background-color: var(--bg-error);
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: center; /*para o texto ficar ao centro*/
+  padding: 0.8rem 0;
+  color: var(--tt-error);
+  font-weight: bold;
+  visibility: hidden; /*também vai ser adicianada a classe open no JS para fazer a mensagem de error aparecer - por padrão, a mensagem de erro não aparece...*/
+  opacity: 0;
+  transform: translateY(-30px); /*posição do início da animação*/
+  transition: transform 1s; /*suavizando animação*/
+}

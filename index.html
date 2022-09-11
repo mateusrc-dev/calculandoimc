@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+  <!--preconnect-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!--meta-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de IMC</title>
+  <!--styles-->
+  <link rel="stylesheet" href="./style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <!--scrips-->
+  <script src="./js/script.js" defer type="module"></script> <!--o comando defer (atributo boolean) é para que todo o html seja lido primeiro para depois ir para o JavaScript-->
+</head>
+<body>
+  <div class="alert-error">Digite somente números</div>
+  <div class="container">
+    <main class="card">
+      <form>
+        <h1 classs="title">Cálculo de IMC</h1>
+        <div class="input-wrapper">
+          <label for="weight"> Peso (kg)</label>
+          <input id="weight" type="text" placeholder="60">
+        </div>
+        <div class="input-wrapper">
+          <label for="height">Altura (cm)</label>
+          <input id="height" type="text" placeholder="165">
+        </div>
+        <button type="submit">Calcular IMC <img src="./assets/arrow.svg" alt="Seta apontando para direita">
+          </button>
+      </form>
+    </main>
+  </div>
+  <div class="modal-wrapper">
+    <div class="modal card"> <!--aqui tem duas classes porque vamos pegar as configurações já criadas da classe card-->
+      <button class="close"><img src="./assets/close.svg" alt="imagem para fechar o popup"></button>
+      <h2 class="title"><span>Seu IMC é de 28</span></h2>
+    </div>
+  </div>
+</body>
+</html>
